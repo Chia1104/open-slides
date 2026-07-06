@@ -168,11 +168,11 @@ const Cover: Page = () => (
         color: dim,
       }}
     >
-      <span>3+ YRS FRONTEND</span>
+      <span>4+ YRS FRONTEND</span>
       <span style={{ color: line }}>·</span>
       <span>REACT / NEXT.JS</span>
       <span style={{ color: line }}>·</span>
-      <span>WEB3 / CROSS-CHAIN</span>
+      <span>TypeScript</span>
     </div>
   </div>
 );
@@ -211,7 +211,7 @@ const Agenda: Page = () => (
     <Heading>今天想跟大家分享的內容</Heading>
     <div style={{ marginTop: 56 }}>
       <AgendaItem n="01" title="關於我" desc="背景、經驗與技術範疇" />
-      <AgendaItem n="02" title="核心專案經驗" desc="跨鏈模組與錢包架構設計" />
+      <AgendaItem n="02" title="核心專案經驗" desc="跨鏈錢包與 AI 聊天模組設計" />
       <AgendaItem n="03" title="前端工程化實踐" desc="架構、品質機制與流程建置" />
       <AgendaItem n="04" title="AI-assisted 開發" desc="如何用 AI 提升開發與內容產出效率" />
       <AgendaItem n="05" title="技術輸出與作品集" desc="部落格經營與個人專案" />
@@ -234,7 +234,7 @@ const About: Page = () => (
     }}
   >
     <Eyebrow>01 · 關於我</Eyebrow>
-    <Heading>3 年以上前端經驗，專注架構與工程品質</Heading>
+    <Heading>4 年以上前端經驗，專注架構與工程品質</Heading>
     <div style={{ marginTop: 64, display: "flex", gap: 56 }}>
       <div
         style={{
@@ -257,9 +257,9 @@ const About: Page = () => (
         </div>
         <div style={{ fontSize: 40, fontWeight: 800, marginTop: 16 }}>LeadBest</div>
         <div style={{ fontSize: 28, color: muted, marginTop: 12, lineHeight: 1.5 }}>
-          前端工程師 · 負責跨鏈模組與
+          前端工程師 · 網頁及行動應用開發
           <br />
-          資產橋接、錢包相關產品開發
+          AI 聊天應用、錢包相關產品開發
         </div>
       </div>
       <div
@@ -285,7 +285,7 @@ const About: Page = () => (
         <div style={{ fontSize: 28, color: muted, marginTop: 12, lineHeight: 1.5 }}>
           React / Next.js 生態、全端開發、
           <br />
-          DevOps 與部署、安全性實踐
+          行動應用開發，內部核心模組開發
         </div>
       </div>
     </div>
@@ -310,6 +310,58 @@ const Chip = ({ children }: { children: React.ReactNode }) => (
   </span>
 );
 
+const CardPoint = ({ children }: { children: React.ReactNode }) => (
+  <div style={{ display: "flex", alignItems: "flex-start", gap: 14, marginTop: 16 }}>
+    <span
+      style={{
+        width: 6,
+        height: 6,
+        borderRadius: 3,
+        background: "var(--osd-accent)",
+        marginTop: 11,
+        flexShrink: 0,
+      }}
+    />
+    <span style={{ fontSize: 26, color: muted, lineHeight: 1.5 }}>{children}</span>
+  </div>
+);
+
+const ProjectCard = ({
+  label,
+  title,
+  chips,
+  children,
+}: {
+  label: string;
+  title: string;
+  chips: React.ReactNode;
+  children: React.ReactNode;
+}) => (
+  <div
+    style={{
+      flex: 1,
+      background: surface,
+      border: `1px solid ${line}`,
+      borderRadius: 16,
+      padding: 40,
+    }}
+  >
+    <div
+      style={{
+        fontFamily: mono,
+        fontSize: 22,
+        color: "var(--osd-accent)",
+        letterSpacing: "0.1em",
+      }}
+    >
+      {label}
+    </div>
+    <div style={{ fontSize: 40, fontWeight: 800, marginTop: 16 }}>{title}</div>
+    <div style={{ display: "flex", gap: 12, marginTop: 24, flexWrap: "wrap" }}>{chips}</div>
+    <div style={{ marginTop: 24 }}>{children}</div>
+  </div>
+);
+
 const CoreProject: Page = () => (
   <div
     style={{
@@ -321,16 +373,36 @@ const CoreProject: Page = () => (
     }}
   >
     <Eyebrow>02 · 核心專案經驗</Eyebrow>
-    <Heading>跨鏈模組與加密貨幣錢包架構</Heading>
-    <div style={{ display: "flex", gap: 20, marginTop: 40 }}>
-      <Chip>Bitcoin L2 · Liquid</Chip>
-      <Chip>Ethereum</Chip>
-      <Chip>Tron</Chip>
-    </div>
-    <div style={{ marginTop: 48 }}>
-      <BulletRow title="跨鏈架構設計" desc="統一介面串接多條鏈的資產查詢與交易流程" />
-      <BulletRow title="資產橋接功能" desc="設計橋接流程的狀態管理與異常處理機制" />
-      <BulletRow title="錢包整合開發" desc="曾參與 Bridgefy 錢包專案的前端實作" />
+    <Heading>跨鏈錢包與 AI 聊天：重用模組設計</Heading>
+    <div style={{ display: "flex", gap: 56, marginTop: 56 }}>
+      <ProjectCard
+        label="BRIDGEFY WALLET"
+        title="跨鏈錢包架構"
+        chips={
+          <>
+            <Chip>Bitcoin L2 · Liquid</Chip>
+            <Chip>Ethereum</Chip>
+            <Chip>Tron</Chip>
+          </>
+        }
+      >
+        <CardPoint>統一介面串接多條鏈的資產查詢與交易流程</CardPoint>
+        <CardPoint>設計橋接流程的狀態管理與異常處理機制</CardPoint>
+      </ProjectCard>
+      <ProjectCard
+        label="DONKIN.AI"
+        title="AI 聊天架構"
+        chips={
+          <>
+            <Chip>Zustand</Chip>
+            <Chip>Streaming</Chip>
+            <Chip>Generics</Chip>
+          </>
+        }
+      >
+        <CardPoint>Context 封裝，跨專案共用同一套聊天核心</CardPoint>
+        <CardPoint>事件驅動處理 Stream，統一文字與推理狀態</CardPoint>
+      </ProjectCard>
     </div>
     <Footer label="HENRY YU · SELF INTRODUCTION" />
   </div>
@@ -363,7 +435,7 @@ const Engineering: Page = () => (
         tag="PIPELINE"
       />
       <BulletRow title="Code Review 文化" desc="推動一致的程式風格與知識共享" tag="PROCESS" />
-      <BulletRow title="部署與維運" desc="Docker、Cloudflare Workers 實務經驗" tag="DEVOPS" />
+      <BulletRow title="部署與維運" desc="Docker 實務經驗" tag="DEVOPS" />
     </div>
     <Footer label="HENRY YU · SELF INTRODUCTION" />
   </div>
@@ -395,7 +467,7 @@ const AiAssisted: Page = () => (
           內容生成實作
         </div>
         <p style={{ fontSize: 28, color: muted, marginTop: 20, lineHeight: 1.6 }}>
-          使用 Vercel AI SDK 打造部落格文章生成工具， 並實作過基於本地模型的 Chatbot 應用。
+          使用 Vercel AI SDK 打造部落格文章生成工具， 並實作基於 Embedding 模型的 RAG 架構。
         </p>
       </div>
     </div>
